@@ -1,0 +1,276 @@
+{% load static %}
+{% load custom_filters %}
+{% load custom_loaders %}
+
+{% for post in posts %}
+    {% if post.type_id == 1 %}
+        <div class="item row" id="item_{{ post.id }}">
+            <div class="col-lg-12" id="show_{{ post.id }}">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu slidedown">
+                        {% if post.user_id == logged_user_id %}
+                            <li>
+                                <a href="/edit/{{ post.id }}">
+                                    <i class="fa fa-edit fa-fw"></i> Chỉnh sửa
+                                </a>
+                            </li>
+                            <li>
+                                <a class="delete_post" data="{{ post.id }}" data-toggle="dropdown">
+                                    <i class="fa fa-remove fa-fw"></i> Xóa
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="/report/{{ post.id }}">
+                                    <i class="fa fa-ban fa-fw"></i> Báo cáo
+                                </a>
+                            </li>
+                            <li>
+                                <a class="save_post">
+                                    <i class="fa fa-bookmark fa-fw"></i> Lưu câu hỏi
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <p class="text-muted">Câu hỏi - <a href="#" class="text-muted">Python</a></p>
+                <a href="/detail/{{ post.id }}"><h3>{{ post.title }}</h3></a>
+
+                {% if post.is_anonymous == 0 %}
+                    <div class="post_info">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <a class="avatar popover_profile" data-container=".container"
+                                   data-toggle="popover"
+                                   data-placement="bottom" class="btn btn-link">
+                                    <img class="img-circle" src="{{ post.user_id|get_avatar }}">
+                                </a>
+                                <div class=" poster_name">
+                                    <a class="popover_profile" data-container=".container" data-toggle="popover"
+                                       data-placement="bottom" class="btn btn-link">
+                                        <h4>{{ post.user_id|get_fullname }}</h4></a>
+                                    <div class="clearfix">
+                                    </div>
+                                    <span class="text-muted">Đã viết {{ post.date_created }}</span>
+                                    <div class="popover_content">
+                                        <div>
+                                            <b>Example popover #2</b> - content
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="question_action">
+                    <button type="button" class="btn btn-info answer"><i class="fa fa-reply"></i> Trả lời
+                    </button>
+                    <a type="button"
+                       class="btn btn-link follow {% if logged_user_id == post.user_id %}disabled{% endif %}">Theo
+                        dõi</a><span class="follow">{{ post.subcribers|get_followers }}</span>
+                    {% if logged_user_id != post.user_id %}
+                        <a type="button" class="btn btn-link downvote" data-id="{{ post.id }}"><i
+                                class="fa fa-thumbs-o-down"></i> Downvote</a>
+                    {% endif %}
+                </div>
+
+                <div class="question_widget">
+                    <div class="form-group">
+                        <div class="editor_{{ post.id }} editor"></div>
+                        <script>
+                            var quill = new Quill('.editor_{{ post.id }}', {
+                                theme: 'snow'
+                            });
+                        </script>
+                    </div>
+                    <button type="button" class="btn btn-primary">Gửi</button>
+                    <a type="button" class="btn btn-link">Lưu nháp</a>
+                    <button type="button" class="btn btn-default pull-right dimiss_widget">Hủy</button>
+                    <a class="btn btn-social btn-facebook pull-right"><i class="fa fa-facebook"></i>&nbsp;Đăng
+                        lên Facebook</a>
+                </div>
+            </div>
+            <div class="col-lg-12 downvote_well" id="hide_{{ post.id }}">
+                <div class="well">
+                    <h4>Bạn đã bỏ phiếu bác bỏ câu hỏi này.</h4>
+                    <p>Bỏ phiếu bác bỏ các nội dung chất lượng thấp để giúp site_name tốt hơn.</p>
+                    <button type="button" class="btn btn-link undo" data-id="{{ post.id }}">Hoàn tác</button>
+                    <a href="/report/{{ post.id }}" class="btn btn-link">Báo cáo</a>
+                </div>
+                <hr>
+            </div>
+        </div>
+    {% endif %}
+    {% if post.type_id == 2 %}
+        <div class="item row" id="item_{{ post.id }}">
+            <div class="col-lg-12">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu slidedown">
+                        {% if post.user_id == logged_user_id %}
+                            <li>
+                                <a href="/edit/{{ post.id }}">
+                                    <i class="fa fa-edit fa-fw"></i> Chỉnh sửa
+                                </a>
+                            </li>
+                            <li>
+                                <a class="delete_post" data="{{ post.id }}" data-toggle="dropdown">
+                                    <i class="fa fa-remove fa-fw"></i> Xóa
+                                </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="/report/{{ post.id }}">
+                                    <i class="fa fa-ban fa-fw"></i> Báo cáo
+                                </a>
+                            </li>
+                            <li>
+                                <a class="save_post">
+                                    <i class="fa fa-bookmark fa-fw"></i> Lưu câu hỏi
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <p class="text-muted">Bài viết - <a href="#" class="text-muted">Django</a></p>
+                <a href="/detail/{{ post.id }}"><h3>{{ post.title }}</h3></a>
+                <div class="post_info">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a class="avatar popover_profile" data-container=".container"
+                               data-toggle="popover"
+                               data-placement="bottom" class="btn btn-link">
+                                <img class="img-circle" src="{{ post.user_id|get_avatar }}">
+                            </a>
+                            <div class=" poster_name">
+                                <a class="popover_profile" data-container=".container" data-toggle="popover"
+                                   data-placement="bottom" class="btn btn-link">
+                                    <h4>{{ post.user_id|get_fullname }}</h4></a>
+                                <div class="clearfix">
+                                </div>
+                                <span class="text-muted">Đã viết {{ post.date_created }}</span>
+                                <div class="popover_content">
+                                    <div>
+                                        <b>Example popover #2</b> - content
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post_content">
+                    <div class="full_content">
+                        {{ post.content|safe }}
+                    </div>
+                    {% if post.content|has_image == "0" %}
+                        {% autoescape off %}
+                            {{ post.content|safe|truncatechars_html:200|linebreaks }}
+                        {% endautoescape %}
+                    {% else %}
+                        <div class="truncated_img">
+                            <img src="{{ post.content|get_first_image }}" class="img-responsive"/>
+                        </div>
+                        <div class="truncated_content">
+                            {% autoescape off %}
+                                {{ post.content|convert_content|safe|truncatechars_html:200|linebreaks }}
+                            {% endautoescape %}
+                        </div>
+                        <a class="read_more_link">Read more</a>
+                    {% endif %}
+                </div>
+                <div class="post_action">
+                    <span class="text-muted">100 Lượt xem</span>
+                    <a class="btn btn-link">Xem các lượt Upvote</a>
+                    <div class="clearfix"></div>
+                    <button type="button" class="btn btn-info answer"><i class="fa fa-thumbs-o-up"></i> Upvote&nbsp;|&nbsp;20
+                    </button>
+                    <a class="btn btn-link downvote"><span class="text-muted">Downvote</span></a>
+                    <a class="btn btn-link comment"><span class="text-muted">Bình luận</span></a><span
+                        class="follow">100</span>
+                </div>
+                <div class="comment-panel panel panel-default">
+                    <div class="panel-heading">
+                        <div class="input-group">
+                            <input id="btn-input" type="text" class="form-control input-sm"
+                                   placeholder="Nhập bình luận...">
+                            <span class="input-group-btn">
+	                                    <button class="btn btn-primary btn-sm" id="btn-chat">
+	                                        Bình luận
+	                                    </button>
+	                                </span>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="cmt_container col-lg-12">
+                                <a href="#" class="cmt_avatar">
+                                    <img class="img-circle" src="img/avatar-thumb.jpeg">
+                                </a>
+                                <div class="cmt_name">
+                                    <a class="popover_profile" data-container="body" data-toggle="popover"
+                                       data-placement="bottom"><h5>Nguyễn Hoàng Phúc</h5></a>
+                                    <div class="clearfix"></div>
+                                    <div class="popover_content">
+                                        <div>
+                                            <b>Example popover #2</b> - content
+                                        </div>
+                                    </div>
+                                    <span class="render_text">
+                                           		Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+                                            </span>
+                                    <div class="cmt_action">
+                                        <input type="text" class="input-sm rep_box" placeholder="Phản hồi...">
+                                        <div class="cmt_action_links">
+                                            <a class="btn btn-link upvote">Upvote</a>
+                                            <a class="btn btn-link downvote"><span
+                                                    class="text-muted">Downvote</span></a>
+                                            <a class="btn btn-link comment"><span
+                                                    class="text-muted">Báo cáo</span></a>
+                                        </div>
+                                        <button type="button" class="btn btn-primary btn_reply btn-sm">Trả lời
+                                        </button>
+                                    </div>
+                                    <div class="rep_container col-lg-12">
+                                        <a href="#" class="rep_avatar">
+                                            <img class="img-circle" src="img/avatar-thumb.jpeg">
+                                        </a>
+                                        <div class="cmt_name">
+                                            <a class="popover_profile" data-container="body"
+                                               data-toggle="popover" data-placement="bottom"><h5>Nguyễn Hoàng
+                                                Phúc</h5></a>
+                                            <div class="clearfix"></div>
+                                            <div class="popover_content">
+                                                <div>
+                                                    <b>Example popover #2</b> - content
+                                                </div>
+                                            </div>
+                                            <span class="render_text">
+                                                    	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+                                            		</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- <div class="well">
+                    <h4>Bạn đã bỏ phiếu bác bỏ câu hỏi này.</h4>
+                    <p>Bỏ phiếu bác bỏ các nội dung chất lượng thấp để giúp site_name tốt hơn.</p>
+                    <button type="button" class="btn btn-link undo">Hoàn tác</button>
+                    <button type="button" class="btn btn-link report">Báo cáo</button>
+                    <button type="button" class="btn btn-link unfollow">Bỏ theo dõi Python</button>
+                </div> -->
+                <hr>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}

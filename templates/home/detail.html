@@ -1,0 +1,188 @@
+{% extends "home/base.html" %}
+{% load custom_loaders %}
+{% block placeholder %}
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="topics">
+                    {% for topic in topics %}
+                        <a href="/list/">{{ topic }}</a>
+                    {% endfor %}
+                </div>
+                <h3>{{ title }}</h3>
+                <div class="post_content">
+                    {% autoescape off %}{{ content }}{% endautoescape %}
+                </div>
+                <div class="post_action">
+                    <button type="button" class="btn btn-info answer">
+                        {% if type_id == 1 %}
+                            Trả lời
+                        {% else %}
+                            Bình luận
+                        {% endif %}
+                    </button>
+                    <button type="button" class="btn btn-link follow">Theo dõi</button>
+                    <span class="follow">100</span>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown"
+                                aria-expanded="false">
+                            Chia sẻ
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><i class="fa fa-facebook fa-fw"></i>&nbsp;Facebook</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-twitter fa-fw"></i>&nbsp;Twitter</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-link fa-fw"></i>&nbsp;Sao chép liên kết</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a type="button" class="btn btn-link">Downvote</a>
+                </div>
+                <div class="question_widget">
+                    <div class="form-group">
+                        <div id="editor"></div>
+                    </div>
+                    <button type="button" class="btn btn-primary">Gửi</button>
+                    <a type="button" class="btn btn-link">Lưu nháp</a>
+                    <button type="button" class="btn btn-default pull-right dimiss_widget">Hủy</button>
+                    <a class="btn btn-social btn-facebook pull-right"><i class="fa fa-facebook"></i>&nbsp;Đăng lên
+                        Facebook</a>
+                </div>
+                <h4 class="page-header">1 câu trả lời</h4>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="post_info">
+                            <a class="avatar popover_profile" data-container=".container" data-toggle="popover"
+                               data-placement="bottom" data-original-title="" title="">
+                                <img class="img-circle" src="img/avatar-thumb.jpeg">
+                            </a>
+                            <div class="poster_name">
+                                <a class="popover_profile" data-container=".container" data-toggle="popover"
+                                   data-placement="bottom" data-original-title="" title=""><h4>Nguyễn Hoàng Phúc</h4>
+                                </a>
+                                <div class="clearfix">
+                                </div>
+                                <span class="text-muted">Đã viết 09:58 AM 18-09-2016</span>
+                                <div class="popover_content">
+                                    <div>
+                                        <b>Example popover #2</b> - content
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="render_text">
+                        <p>Yes, it is! A totally free <a href="#" target="_blank">iPhone music transfer</a> - PhoneTrans allows you transfer any music from your iPhone to computer with ease. Check the quick step to get your music to your computer now:</p>
+                        <p>Step 1. Free download PhoneTrans on your computer &gt; Connect your iPhone with the computer.</p>
+                        <p>Step 2. Click Music tab to access the music list window &gt; choose the music you want to transfer from iPhone to computer &gt; click iPhone to PC / iPhone to Mac tab.</p>
+                        <p>Related Reading:</p>
+                        <p><a href="#" target="_blank">How to Transfer Photos from iPhone to iMac/MacBook/Mac Mini/Mac Pro</a></p>
+                        <p><a href="https://www.imobie.com/podtrans/" target="_blank">Best Free iPod Transfer Software, Transfer iPod Music to PC / Mac Free</a></p>
+                        </span>
+                        <div class="post_action">
+                            <span class="text-muted">100 Lượt xem</span>
+                            <a class="btn btn-link">Xem các lượt Upvote</a>
+                            <div class="clearfix"></div>
+                            <button type="button" class="btn btn-info answer"><i class="fa fa-thumbs-o-up"></i> Upvote&nbsp;|&nbsp;20
+                            </button>
+                            <a class="btn btn-link downvote"><span class="text-muted">Downvote</span></a>
+                            <a class="btn btn-link comment"><span class="text-muted">Bình luận</span></a><span
+                                class="follow">100</span>
+                        </div>
+                        <div class="comment-panel panel panel-default">
+                            <div class="panel-heading">
+                                <div class="input-group">
+                                    <input id="btn-input" type="text" class="form-control input-sm"
+                                           placeholder="Nhập bình luận...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary btn-sm" id="btn-chat">
+                                            Bình luận
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="cmt_container col-lg-12">
+                                        <a href="#" class="cmt_avatar">
+                                            <img class="img-circle" src="img/avatar-thumb.jpeg">
+                                        </a>
+                                        <div class="cmt_name">
+                                            <a class="popover_profile" data-container="body" data-toggle="popover"
+                                               data-placement="bottom"><h5>Nguyễn Hoàng Phúc</h5></a>
+                                            <div class="clearfix"></div>
+                                            <div class="popover_content">
+                                                <div>
+                                                    <b>Example popover #2</b> - content
+                                                </div>
+                                            </div>
+                                            <span class="render_text">
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+                                            </span>
+                                            <div class="cmt_action">
+                                                <input type="text" class="input-sm rep_box" placeholder="Phản hồi...">
+                                                <div class="cmt_action_links">
+                                                    <a class="btn btn-link upvote">Upvote</a>
+                                                    <a class="btn btn-link downvote"><span
+                                                            class="text-muted">Downvote</span></a>
+                                                    <a class="btn btn-link comment"><span
+                                                            class="text-muted">Báo cáo</span></a>
+                                                </div>
+                                                <button type="button" class="btn btn-primary btn_reply btn-sm">Trả lời
+                                                </button>
+                                            </div>
+                                            <div class="rep_container col-lg-12">
+                                                <a href="#" class="rep_avatar">
+                                                    <img class="img-circle" src="img/avatar-thumb.jpeg">
+                                                </a>
+                                                <div class="cmt_name">
+                                                    <a class="popover_profile" data-container="body"
+                                                       data-toggle="popover"
+                                                       data-placement="bottom"><h5>Nguyễn Hoàng Phúc</h5></a>
+                                                    <div class="clearfix"></div>
+                                                    <div class="popover_content">
+                                                        <div>
+                                                            <b>Example popover #2</b> - content
+                                                        </div>
+                                                    </div>
+                                                    <span class="render_text">
+                                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <h4 class="page-header feed">Các câu hỏi liên quan</h4>
+                <p><a href=""><i class="fa fa-question-circle fa-fw"></i>&nbsp;Is there a direct way to transfer music
+                    from
+                    my old iPhone to my new iPhone 6S?</a></p>
+                <p><a href=""><i class="fa fa-question-circle fa-fw"></i>&nbsp;Is there a way of transferring the music
+                    from
+                    my iPhone onto my computer?</a></p>
+                <p><a href=""><i class="fa fa-question-circle fa-fw"></i>&nbsp;How do you transfer music from one iPhone
+                    to
+                    another iPhone without a computer?</a></p>
+                <p><a href=""><i class="fa fa-question-circle fa-fw"></i>&nbsp;What is the best iTunes alternative to
+                    transfer my iPhone music to my computer without barriers?</a></p>
+                <p><a href=""><i class="fa fa-question-circle fa-fw"></i>&nbsp;Is there a iTunes alternative to transfer
+                    music from my iPhone to computer without tedious tutorials?</a></p>
+                <p><a href=""><i class="fa fa-question-circle fa-fw"></i>&nbsp;Can I transfer music files from a
+                    computer to
+                    an iPhone 4S at no cost?</a></p>
+                <p><a href=""><i class="fa fa-question-circle fa-fw"></i>&nbsp;How can I transfer music from iPod to
+                    computer in a free method?</a></p>
+                <p><a href=""><i class="fa fa-question-circle fa-fw"></i>&nbsp;How do I transfer 3rd party music from my
+                    computer into my music app in my iPhone?</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

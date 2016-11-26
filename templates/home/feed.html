@@ -1,0 +1,12 @@
+{% load custom_loaders %}
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <i class="fa fa-rss-square fa-fw"></i>&nbsp;Bảng tin
+        <small class="pull-right"><a href="#">Chỉnh sửa</a></small>
+    </div>
+    <div class="panel-body">
+        {% for topic in topics %}
+            <p><a href="#"><i class="fa fa-check fa-fw"></i>&nbsp;{{ topic }}</a></p>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{% extends "home/base.html" %}
+{% load custom_loaders %}
+{% block extra_files %}
+    {{ form.media }}
+{% endblock %}
+{% block placeholder %}
+    <div class="col-sm-3">
+        {% show_feed %}
+        {% show_event %}
+    </div>
+    <div class="col-sm-9">
+        <div class="row">
+            <div class="col-lg-12">
+                <form role="form" method="post" action="/post/insert/" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="form-group">
+                        <label>Bạn muốn chia sẻ điều gì?</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Nội dung</label>
+                        {{ form.content }}
+                    </div>
+                    <div class="form-group">
+                        <input id="btnSubmit" class="btn btn-primary" type="submit" name="submit" value="Đăng"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

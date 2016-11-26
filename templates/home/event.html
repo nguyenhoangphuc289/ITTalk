@@ -1,0 +1,11 @@
+{% load custom_loaders %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="fa fa-bullhorn fa-fw"></i>&nbsp;Sự kiện
+    </div>
+    <div class="panel-body">
+        {% for event in events %}
+            <p><a href="" title=""><i class="fa fa-check fa-fw"></i>&nbsp;{{ event }}</a></p>
+        {% endfor %}
+    </div>
+</div>

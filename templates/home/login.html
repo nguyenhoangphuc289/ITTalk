@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Nguyen Hoang Phuc">
+    <title>Login</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="{% static "vendor/metisMenu/metisMenu.min.css" %}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static "dist/css/sb-admin-2.css" %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static "vendor/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=VT323" />
+    <!-- Social Buttons CSS -->
+    <link href="{% static "vendor/bootstrap-social/bootstrap-social.css" %}" rel="stylesheet">
+    <!-- Include stylesheet -->
+    <link href="{% static  "dist/css/quill.snow.css" %}" rel="stylesheet">
+</head>
+<body id="login_screen">
+<div class="container">
+    <div class="login_wrapper">
+        <h1 class="text-center">
+            <img class="logo-lg" src="{% static 'img/logo.png' %}" alt="IT Talk">
+        </h1>
+        <h3 class="sologan text-center">Talk about » IT</h3>
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập"/>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" placeholder="Mật khẩu"/>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">Ghi nhớ
+                        </label>
+                    </div>
+                    <a href="#">Đăng ký tài khoản</a>
+                </div>
+                <button type="submit" class="btn btn-success">Đăng nhập</button>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <a class="btn btn-block btn-social btn-facebook" href="
+
+                            {% url 'social:begin' 'facebook' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">
+                        <i class="fa fa-facebook"></i> Đăng nhập bằng Facebook
+                    </a>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-block btn-social btn-google-plus">
+                        <i class="fa fa-google-plus"></i> Đăng nhập bằng Google
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="footer_nav">
+                    <ul class="nav_list">
+                        <li class="about"><a href="#">Trợ giúp</a></li>
+                        <li class="prizes"><a href="#">Đánh giá</a></li>
+                        <li class="careers"><a href="#">Tuyển dụng</a></li>
+                        <li class="sitemap"><a href="#">Sitemap</a></li>
+                        <li class="privacy"><a href="#">Riêng tư</a></li>
+                        <li class="tos"><a href="#">Điều khoản</a></li>
+                        <li class="feedback"><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="{% static "vendor/metisMenu/metisMenu.min.js" %}"></script>
+<!-- Custom Theme JavaScript -->
+<script src="{% static "dist/js/sb-admin-2.js" %}"></script>
+
+</body>
+</html>
